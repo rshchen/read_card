@@ -26,11 +26,6 @@
     <button class="btn btn-primary" onclick="submitForm()">建立表單</button>
 
     <div id="result" class="mt-4"></div>
-
-    <label>
-      <input type="checkbox" id="useShortUrl">
-      使用縮網址（PicSee）
-    </label>
   </div>
 
   <script>
@@ -38,23 +33,21 @@
       const formTitle = document.getElementById('formTitle').value;
       const questions = document.getElementById('questions').value;
       const classNum = document.getElementById('classNum').value;
-      const useShortUrl = document.getElementById('useShortUrl').checked;  // 新增這行
 
       google.script.run.withSuccessHandler(function(url) {
         document.getElementById('result').innerHTML = `
           <div class="alert alert-success">
             表單已建立！<br>
+            <span style = 'color:red;'>請記得收集郵件（設定 > 回覆 > 收集電子郵件地址 > 選擇「已驗證」），並建議開啟「僅限回覆 1 次」功能！</span> <br>
             <a href="${url}" target="_blank">${url}</a>
           </div>
         `;
       }).createScantronFormWithData({
         formTitle: formTitle,
         questions: questions,
-        classNum: classNum,
-        useShortUrl: useShortUrl  // 傳入後端
+        classNum: classNum
       });
     }
   </script>
-
 </body>
 </html>
