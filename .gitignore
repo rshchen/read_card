@@ -1,0 +1,15 @@
+# 忽略 clasp 設定檔（綁定的是本機的 Apps Script 專案 ID）
+.clasp.json
+
+# 忽略 Node 套件（若你有使用）
+node_modules/
+
+# 忽略 macOS 的隱藏檔案
+.DS_Store
+
+# 忽略 VSCode 設定
+.vscode/
+
+# 如果你有使用 .env 儲存 Token 或 API Key
+.env
+
