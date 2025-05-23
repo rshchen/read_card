@@ -83,7 +83,7 @@ function createScantronFormWithData(data) {
 
   // 選填題 (MultipleChoiceGridItem)
   const optionalQuestionsGrids = questions.slice(2);  // 選填題數量
-  const optionalOptions = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "±", "-"];
+  const optionalOptions = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "±"];
   form.addPageBreakItem().setTitle("選填題");
 
   let currentRowIndex = singleChoiceQuestions + multipleChoiceQuestions + 1;
