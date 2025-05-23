@@ -5,7 +5,8 @@ function doGet() {
 // 從表單送出的資料來建立表單
 function createScantronFormWithData(data) {
   const formTitle = data.formTitle;
-  const questions =  data.questions.split(',').map(Number); // 字串轉陣列
+  // 將 questions 字串直接分割成數字陣列，不再處理多層結構
+  const questions =  data.questions.split(',').map(Number);
   const classNum =  data.classNum.split(',');
 
   const form = FormApp.create(formTitle);
@@ -21,9 +22,9 @@ function createScantronFormWithData(data) {
 
   // 設置數字格式驗證
   var seatNumberValidation = FormApp.createTextValidation()
-                                     .requireNumber() // 只允許數字
-                                     .setHelpText('請輸入有效的座號') // 輸入無效時顯示的提示訊息
-                                     .build();
+                                   .requireNumber() // 只允許數字
+                                   .setHelpText('請輸入有效的座號') // 輸入無效時顯示的提示訊息
+                                   .build();
   
   seatNumberItem.setValidation(seatNumberValidation); // 為座號欄位設置驗證規則
   
@@ -50,7 +51,7 @@ function createScantronFormWithData(data) {
   }
 
   // 單選題
-  form.addPageBreakItem();
+  form.addPageBreakItem().setTitle("單選題"); // 添加標題
   const singleChoiceQuestions = questions[0];
   const singleChoiceOptions = ["A", "B", "C", "D", "E"];
   const singleNumbers = Array.from({ length: singleChoiceQuestions }, (_, i) => i + 1);
@@ -58,13 +59,14 @@ function createScantronFormWithData(data) {
 
   singleChunks.forEach((group) => {
     const rows = group.map(num => `${num}`);
-    form.addGridItem()
+    form.addGridItem() // GridItem 預設就是單選
         .setTitle(`一、單選題`)
         .setRows(rows)
         .setColumns(singleChoiceOptions);
   });
 
   // 多選題
+  form.addPageBreakItem().setTitle("多選題"); // 添加標題
   const multipleChoiceQuestions = questions[1];
   const multipleChoiceOptions = ["A", "B", "C", "D", "E"];
   const multiStart = singleChoiceQuestions + 1;
@@ -73,20 +75,20 @@ function createScantronFormWithData(data) {
 
   multiChunks.forEach((group) => {
     const rows = group.map(num => `${num}`);
-    form.addCheckboxGridItem()
+    form.addCheckboxGridItem() // CheckboxGridItem 是多選
         .setTitle(`二、多選題`)
         .setRows(rows)
         .setColumns(multipleChoiceOptions);
   });
 
-  // 選填題
+  // 選填題 (MultipleChoiceGridItem)
   const optionalQuestionsGrids = questions.slice(2);  // 選填題數量
   const optionalOptions = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "±", "-"];
   form.addPageBreakItem().setTitle("選填題");
 
   let currentRowIndex = singleChoiceQuestions + multipleChoiceQuestions + 1;
   optionalQuestionsGrids.forEach((rowCount) => {
-    let gridItem = form.addCheckboxGridItem()
+    let gridItem = form.addGridItem() // GridItem 預設就是單選
                           .setTitle(`三、選填題`);
 
     let rowLabels = [];
@@ -97,5 +99,9 @@ function createScantronFormWithData(data) {
     gridItem.setRows(rowLabels).setColumns(optionalOptions);
   });
 
-  return form.getPublishedUrl();
+  const formURL = form.getPublishedUrl();
+
+  Logger.log(`表單 URL: ${formURL}`);
+
+  return formURL; // 直接返回表單 URL
 }
