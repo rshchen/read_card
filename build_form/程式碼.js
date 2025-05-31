@@ -16,17 +16,17 @@ function createScantronFormWithData(data) {
       .setChoices(classNum.map(num => item.createChoice(String(num))))
       .setRequired(true);
 
-  var seatNumberItem = form.addTextItem()
-                           .setTitle("座號")
-                           .setRequired(true); // 設置為必填項
+  let seatNumberItem = form.addTextItem()
+    .setTitle("座號")
+    .setRequired(true); // 設置為必填項
 
-  // 設置數字格式驗證
-  var seatNumberValidation = FormApp.createTextValidation()
-                                   .requireNumber() // 只允許數字
-                                   .setHelpText('請輸入有效的座號') // 輸入無效時顯示的提示訊息
-                                   .build();
-  
-  seatNumberItem.setValidation(seatNumberValidation); // 為座號欄位設置驗證規則
+  // 設置數字格式驗證，限制為 1 到 50
+  let seatNumberValidation = FormApp.createTextValidation()
+    .requireNumberBetween(1, 50) // 僅允許 1 到 50 的數字
+    .setHelpText("請輸入 1 到 50 的整數座號") // 提示訊息
+    .build();
+
+  seatNumberItem.setValidation(seatNumberValidation); // 套用驗證規則
   
   form.addTextItem().setTitle("姓名").setRequired(true);
 
