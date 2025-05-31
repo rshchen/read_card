@@ -2,7 +2,7 @@
 ## 專案名稱
 本專案利用google表單，達成線上畫卡的自動化流程，從表單製作到讀卡與成績寄送由幾個子專案組成：
 1. 表單製作專案：[**build_form**](#build_form專案)
-2. 成績計算專案：還沒上傳。
+2. 成績計算專案：[**calculate_grades**](#calculate_grades專案)。
 
 
 # build_form專案
@@ -37,6 +37,12 @@
 網址，點擊後會進入表單生成的使用者網頁，依照指示輸入就會生成表單，
 生成的題目有三個大題：一、選擇題；二、多選題；三、選填題
 
+
+#calculate_grades專案
+點擊此連結[讀卡新版.ipynb](https://colab.research.google.com/drive/1olh4g38J187Y7CBLHPC2Nzpsuvf5A0pF?usp=sharing)
+點擊 檔案 > 在雲端硬碟中另存副本，將其保存到你的 Google 雲端硬碟中。
+點擊 執行階段 > 全部執行，這會運行整個 Notebook。
+依照說明進行操作，即可讀取 Google 表單的回應資料，並計算學生的成績。
 
 
 
