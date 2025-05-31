@@ -39,10 +39,22 @@
 
 
 # calculate_grades專案
-點擊此連結[讀卡新版.ipynb](https://colab.research.google.com/drive/1olh4g38J187Y7CBLHPC2Nzpsuvf5A0pF?usp=sharing)
-點擊 檔案 > 在雲端硬碟中另存副本，將其保存到你的 Google 雲端硬碟中。
-點擊 執行階段 > 全部執行，這會運行整個 Notebook。
-依照說明進行操作，即可讀取 Google 表單的回應資料，並計算學生的成績。
+
+## `calculate_grades` 專案使用說明
+
+點擊以下連結開啟 Colab 筆記本：
+[讀卡新版.ipynb](https://colab.research.google.com/drive/1olh4g38J187Y7CBLHPC2Nzpsuvf5A0pF?usp=sharing)
+
+### 操作步驟：
+
+1. 點選 `檔案 > 在雲端硬碟中另存副本`，將 notebook 儲存到你的 Google 雲端硬碟。
+2. 點選 `執行階段 > 全部執行`，以執行整份程式。
+3. 依照 notebook 中的指示操作，即可：
+
+   * 讀取來自 Google 表單的回應資料
+   * 自動計算學生的成績
+
+
 
 
 
